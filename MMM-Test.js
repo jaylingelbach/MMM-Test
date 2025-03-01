@@ -14,7 +14,9 @@ Module.register("MMM-Test", {
     getQuote: async function () {
         try {
           const url = "https://stoic.tekloon.net/stoic-quote";
-          const res = await fetch(url);
+          const res = await fetch(url , {
+            method: "GET"
+          });
           const data = await res.json();
           console.log("data", data);
           return data; // Ensure the function returns the fetched data
