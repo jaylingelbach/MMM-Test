@@ -13,20 +13,6 @@ Module.register("MMM-Test", {
         return element;
     },
 
-    getQuote: async function () {
-        try {
-            const url = "https://cors-anywhere.herokuapp.com/https://stoic.tekloon.net/stoic-quote";
-            const res = await fetch(url, {
-                mode: "no-cors",
-                method:"GET"
-            });
-            const data = await res.json();
-            console.log("data", data);
-            return data;
-        } catch (error) {
-            console.error("Error:", error);
-        }
-    },
 
     notificationReceived: function() {},
     socketNotificationReceived: function() {},
