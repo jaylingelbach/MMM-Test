@@ -5,32 +5,18 @@ module.exports = NodeHelper.create({
   socketNotificationReceived: function() {},
 })
 
-getDom: function() {
-  var element = document.createElement("div")
-  element.className = "myContent"
-  element.innerHTML = "Hello, World! " + this.config.foo
-  var subElement = document.createElement("p")
-  subElement.id = "COUNT"
-  element.appendChild(subElement)
-  return element
-},
+var NodeHelper = require("node_helper")
 
-notificationReceived: function(notification, payload, sender) {
-  switch(notification) {
-    case "DOM_OBJECTS_CREATED":
-      var timer = setInterval(()=>{
-        this.sendSocketNotification("DO_YOUR_JOB", this.count)
-        this.count++
-      }, 1000)
-      break
-  }
-},
+module.exports = NodeHelper.create({
+  start: function() {
+    this.countDown = 10000000
+  },
+  socketNotificationReceived: function(notification, payload) {
+    switch(notification) {
+      case "DO_YOUR_JOB":
+        this.sendSocketNotification("I_DID - in node_helper", (this.countDown - payload))
+        break
+    }
+  },
+})
 
-socketNotificationReceived: function(notification, payload) {
-  switch(notification) {
-    case "I_DID":
-      var elem = document.getElementById("COUNT")
-      elem.innerHTML = "Count:" + payload
-      break
-  }
-},
