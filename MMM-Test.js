@@ -15,7 +15,7 @@ Module.register("MMM-Test", {
 
     getQuote: async function () {
         try {
-            const url = "https://stoic.tekloon.net/stoic-quote";
+            const url = "https://cors-anywhere.herokuapp.com/https://stoic.tekloon.net/stoic-quote";
             const res = await fetch(url, {
                 mode: "no-cors",
                 method:"GET"
