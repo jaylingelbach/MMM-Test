@@ -1,5 +1,7 @@
 Module.register("MMM-Test", {
-    defaults: {},
+    defaults: {
+        starterText: "Jay"
+    },
     start: function () {},
     
     getDom: function() {
@@ -7,7 +9,7 @@ Module.register("MMM-Test", {
         this.getQuote();
         var element = document.createElement("div")
         element.className = "myContent"
-        element.innerHTML = "Hello, World!"
+        element.innerHTML = `Hello, ${starterText}!`
         return element
     },
 
@@ -15,7 +17,8 @@ Module.register("MMM-Test", {
         try {
           const url = "https://stoic.tekloon.net/stoic-quote";
           const res = await fetch(url , {
-            method: "GET"
+            method: "GET",
+            mode:"no-cors"
           });
           const data = await res.json();
           console.log("data", data);
