@@ -6,7 +6,6 @@ Module.register("MMM-Test", {
     
     getDom: function() {
         console.log("A CONSOLE LOG");
-        this.getQuote();
         var element = document.createElement("div");
         element.className = "myContent";
         element.innerHTML = `Hello, ${this.defaults.starterText}!`;
