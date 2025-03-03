@@ -1,5 +1,5 @@
 // /* MagicMirror²
-
+const apiKey = process.env.API_KEY;
 Module.register("MMM-Test", {
  // Module config defaults.
  defaults: {
@@ -12,11 +12,10 @@ Module.register("MMM-Test", {
    //retry delay
    retryDelay: 2500,
    //api url
-   //apiBase: "https://api.urbandictionary.com/v0/random"
    apiBase: "https://the-one-api.dev/v2/quote",
    headers: {
         'Accept': 'application/json',
-        'Authorization': "Bearer 4WmkWtqKGICd2PuDY6Ot",
+        'Authorization': `Bearer ${apiKey}`,
    },
    quote:"",
    character:"",
@@ -68,6 +67,7 @@ Module.register("MMM-Test", {
             this.config.character = characterData.name;
             this.config.race = characterData.race || "No data given...";
             this.config.realm = characterData.realm || "No data given...";
+            this.race === "Hobbit" ? this.config.realm = "The Shire": this.config.realm;
 
            return quoteData;
     } catch(error) {
