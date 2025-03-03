@@ -43,19 +43,19 @@ Module.register("MMM-Test", {
   *
   * @returns {string[]} array with word, description, example, and author
   */
- getQuote: async function () {
+ getData: async function () {
     try {
         const response = await fetch(this.config.apiBase, {
             method: "GET",
             headers: this.config.headers
            });
            const quotes = await response.json();
-           Log.log("!!!!!!!!!!!!!! JSON RETURNED!!!!!!!!!!!: ", json);
+           Log.log("!!!!!!!!!!!!!! JSON RETURNED!!!!!!!!!!!: ", quotes);
            const quoteData = quotes.docs[Math.floor(Math.random() * quotes.docs.length)];
            console.log("QUOTE DATA: ",quoteData)
            return quoteData;
     } catch(error) {
-        console.error(error);
+        console.error("ERROR in getData: ", error);
     }
  },
 
@@ -66,7 +66,7 @@ Module.register("MMM-Test", {
      ? this.config.classes
      : "urban bright pre-line";
    //wrapper.innerHTML = this.config.word;
-   this.getQuote().then((response) => {
+   this.getData().then((response) => {
      wrapper.innerHTML =
        "<div class='word'>" +
        response[0] +
