@@ -12,7 +12,8 @@ Module.register("MMM-Test", {
    //retry delay
    retryDelay: 2500,
    //api url
-   apiBase: "https://api.urbandictionary.com/v0/random"
+   //apiBase: "https://api.urbandictionary.com/v0/random"
+   apiBase: "http://swapi.dev/api/planets/1/"
 
  },
  getHeader: function () {
@@ -82,7 +83,7 @@ Module.register("MMM-Test", {
        "Author: " +
        response[3];
    });
-   
+
    return wrapper;
  }
 });
