@@ -2,7 +2,7 @@ Module.register("MMM-Test", {
     // Module config defaults.
     defaults: {
       //update every 3 minutes
-      updateInterval: 10000,
+      updateInterval: 180000,
       //fade speed
       fadeSpeed: 4000,
       //initial load delay
@@ -80,12 +80,13 @@ Module.register("MMM-Test", {
         : "urban bright pre-line";
       this.getData().then((response) => {
         wrapper.innerHTML =
-          "<div class='quote'> Quote: " +
+          "<blockquote>" +  
+          "<div> Quote: " +
           this.config.quote +
-          "</div>" +
-          "<div class='name'>" +
-          "<strong>Name: </strong>" +
+            "-- " +
+          "<cite> " +
           this.config.character +
+          "</cite>" +
           "</div>" +
           "<br>" +
           "<div class='race'>" +
