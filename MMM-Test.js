@@ -78,7 +78,7 @@ Module.register("MMM-Test", {
         "<div class='quote'>" +
           "<blockquote>" +  
             this.config.quote +
-            "<div>"
+            "<div>" +
             "<cite> -" +
                 this.config.character +
             "</cite>" +
