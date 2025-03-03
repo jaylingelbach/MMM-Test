@@ -63,8 +63,8 @@ Module.register("MMM-Test", {
           });
           
             const characters = await rawCharacters.json();
-            console.log("CHAR DATA!!!!!!!!!!: ", characterData);
             const characterData = characters.docs[0];
+            console.log("CHAR DATA!!!!!!!!!!: ", characterData);
             this.config.character = characterData.name;
             this.config.race = characterData.race || "";
             this.config.realm = characterData.realm || "";
