@@ -44,12 +44,13 @@ Module.register("MMM-Test", {
     method: "GET",
     headers: {
         'Accept': 'application/json',
-        'Authorization': "4WmkWtqKGICd2PuDY6Ot",
+        'Authorization': "Bearer 4WmkWtqKGICd2PuDY6Ot",
        }
    });
    const json = await response.json();
    Log.log("!!!!!!!!!!!!!! JSON RETURNED!!!!!!!!!!!: ", json);
-   const quote = json.list[0].word;
+   const quotes = await rawQuotes.json();
+   const quoteData = quotes.docs[Math.floor(Math.random() * quotes.docs.length)];
    //This removes  the brackets from definition and example and it limits the amount of characters to 130 for each so they fit nice.
    const definition = json.list[0].definition
      .replace(/[\[\]]/g, "")
