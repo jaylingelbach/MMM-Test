@@ -11,12 +11,11 @@ Module.register("MMM-Test", {
         mode: "no-cors",
         method: "GET"
        });
-       return await response.json()
-        .then((data) => {
-            console.log("DATA: ",data);
-            data.children.forEach((post) => {
-                topPosts += post.data.title + "<br/>";
-            });
+       const res = await response.json()
+        Log.Log(res);
+            // data.children.forEach((post) => {
+            //     topPosts += post.data.title + "<br/>";
+           
         })
     },
     getDom: function() {
