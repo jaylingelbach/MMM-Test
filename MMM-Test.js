@@ -9,6 +9,7 @@ Module.register("MMM-Test", {
     getTopPosts: async function() {
        const response =  await fetch(this.config.apiBase, {
         method: "GET",
+        mode:"cors",
         headers: {
             "Content-Type": "application-json"
         }
