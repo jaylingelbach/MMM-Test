@@ -4,18 +4,20 @@ Module.register("MMM-Test", {
     },
     getDom: function() {
         var element = document.createElement("div")
-        element.innerHTML = "Hello, World! " + this.config.starterText
+        element.innerHTML = "Hello,  " + this.config.starterText
         return element
       },
       
     notificationReceived: function(notification, payload, sender) {
     switch(notification) {
         case "DOM_OBJECTS_CREATED":
-        var timer = setInterval(()=>{
-            this.sendSocketNotification("DO_YOUR_JOB", this.count)
-            this.count++
-        }, 1000)
+        Log.log(`Dom objects created... Can manipulate the DOM now.  Notification: ${notification}`)
         break
+    }
+    if (sender) {
+        Log.log(`Sender: ${sender}, payload: ${payload}, notification: ${notification} `)
+    } else {
+        Log.log(`No sender, Payload: ${payload}`)
     }
     },
     getHeader: function() {
