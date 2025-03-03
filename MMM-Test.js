@@ -17,7 +17,7 @@ Module.register("MMM-Test", {
    apiKey: "4WmkWtqKGICd2PuDY6Ot",
    headers: {
     'Accept': 'application/json',
-    'Authorization': apiKey,
+    'Authorization': this.apiKey,
    }
 
  },
