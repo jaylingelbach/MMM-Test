@@ -1,18 +1,18 @@
 let topPosts = "";
 
 fetch("https:reddit.com/r/programming/top.json?t=week&limit=3")
-.then(response => response.json)
+.then((response) => response.json())
 .then((data) => {
-    data.data.children.forEach((post) => {
+    console.log("DATA: ",data);
+    data.children.forEach((post) => {
         topPosts += post.data.title + "<br/>";
-    }
-)},
+    });
+})
 Module.register("MMM-Test", {
     defaults: {
         text: "Jay"
     },
     getDom: function() {
-        this.sendNotification("MY_MODULE_READY_FOR_ACTION", { foo: "bar" });
         var element = document.createElement("div")
         element.innerHTML = topPosts;
         return element
