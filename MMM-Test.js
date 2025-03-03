@@ -3,6 +3,7 @@ Module.register("MMM-Test", {
         starterText: "Jay"
     },
     getDom: function() {
+        this.sendNotification("MY_MODULE_READY_FOR_ACTION", { foo: bar });
         var element = document.createElement("div")
         element.innerHTML = "Hello,  " + this.config.starterText
         return element
@@ -15,7 +16,7 @@ Module.register("MMM-Test", {
         break
     }
     if (sender) {
-        Log.log(`Sender: ${sender}, payload: ${payload}, notification: ${notification} `)
+        Log.log(`Sender: ${sender.name}, payload: ${payload}, notification: ${notification} `)
     } else {
         Log.log(`No sender, Payload: ${payload}`)
     }
