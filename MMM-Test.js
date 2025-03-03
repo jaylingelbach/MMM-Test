@@ -12,7 +12,7 @@ Module.register("MMM-Test", {
    //retry delay
    retryDelay: 2500,
    //api url
-   apiBase: "https://the-one-api.dev/v2/quote?limit=10",
+   apiBase: "https://the-one-api.dev/v2/quote",
    headers: {
         'Accept': 'application/json',
         'Authorization': `Bearer 4WmkWtqKGICd2PuDY6Ot`,
@@ -41,7 +41,6 @@ Module.register("MMM-Test", {
 
     // Refresh data at set intervals
     setInterval(() => {
-      this.getData();
     }, this.config.updateInterval);
   },
 
@@ -59,7 +58,6 @@ Module.register("MMM-Test", {
            const quotes = await response.json();
            Log.log("!!!!!!!!!!!!!! JSON RETURNED!!!!!!!!!!!: ", quotes);
            const quoteData = quotes.docs[Math.floor(Math.random() * quotes.docs.length)];
-           console.log("QUOTE DATA: ",quoteData)
            this.config.quote = quoteData.dialog;
            const rawCharacters = await fetch(`https://the-one-api.dev/v2/character?_id=${quoteData.character}`, {
             headers: this.config.headers,
@@ -67,7 +65,6 @@ Module.register("MMM-Test", {
           
             const characters = await rawCharacters.json();
             const characterData = characters.docs[0];
-            console.log("CHAR DATA!!!!!!!!!!: ", characterData);
             this.config.character = characterData.name;
             this.config.race = characterData.race || "No data given...";
             this.config.realm = characterData.realm || (this.config.race === "Hobbit" ? "The Shire" : "No data given...");
