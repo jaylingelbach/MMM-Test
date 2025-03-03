@@ -86,7 +86,7 @@ Module.register("MMM-Test", {
           "<cite> -" +
             this.config.character +
           "</cite>" +
-        "</div>" +
+        
         "<div class='race'>" +
             "<strong>Race: </strong>" +
             "<em>" +
@@ -94,7 +94,8 @@ Module.register("MMM-Test", {
             "</em>" +
           "</div>" +
           "Realm: " +
-          this.config.realm
+          this.config.realm +
+        "</div>"
       });
    
       return wrapper;
