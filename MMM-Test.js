@@ -19,7 +19,9 @@ Module.register("MMM-Test", {
         'Authorization': "Bearer 4WmkWtqKGICd2PuDY6Ot",
    },
    quote:"",
-   character:""
+   character:"",
+   race:"",
+   realm:""
 
  },
  getHeader: function () {
@@ -61,9 +63,11 @@ Module.register("MMM-Test", {
           });
           
             const characters = await rawCharacters.json();
+            console.log("CHAR DATA!!!!!!!!!!: ", characterData);
             const characterData = characters.docs[0];
             this.config.character = characterData.name;
-            console.log("CHAR DATA!!!!!!!!!!: ", characterData);
+            this.config.race = characterData.race || "";
+            this.config.realm = characterData.realm || "";
 
            return quoteData;
     } catch(error) {
@@ -80,23 +84,23 @@ Module.register("MMM-Test", {
    //wrapper.innerHTML = this.config.word;
    this.getData().then((response) => {
      wrapper.innerHTML =
-       "<div class='word'>" +
+       "<div class='quote'> Quote: " +
        this.config.quote +
        "</div>" +
-       "<div class='description'>" +
-       "<strong>Description: </strong>" +
+       "<div class='name'>" +
+       "<strong>Name: </strong>" +
        this.config.character +
        "</div>" +
        "<br>" +
-       "<div class='example'>" +
-       "<strong>Example: </strong>" +
+       "<div class='race'>" +
+       "<strong>Race: </strong>" +
        "<em>" +
-       response[2] +
+       this.config.race +
        "</em>" +
        "</div>" +
        "<br>" +
-       "Author: " +
-       response[3];
+       "Realm: " +
+       this.config.realm
    });
 
    return wrapper;
