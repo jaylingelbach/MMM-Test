@@ -78,10 +78,11 @@ Module.register("MMM-Test", {
         "<div class='quote'>" +
           "<blockquote>" +  
             this.config.quote +
-          "<cite> -" +
-            this.config.character +
-          "</cite>" +
-        
+            "<div>"
+            "<cite> -" +
+                this.config.character +
+            "</cite>" +
+          "</div>" + 
         "<div class='race'>" +
             "<strong>Race: </strong>" +
             "<em>" +
