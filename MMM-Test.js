@@ -11,7 +11,7 @@ Module.register("MMM-Test", {
         mode: "no-cors",
         method: "GET"
        });
-       return response.json()
+       return await response.json()
         .then((data) => {
             console.log("DATA: ",data);
             data.children.forEach((post) => {
