@@ -14,6 +14,10 @@ Module.register("MMM-Test", {
    //api url
    //apiBase: "https://api.urbandictionary.com/v0/random"
    apiBase: "https://the-one-api.dev/v2/quote",
+   headers: {
+        'Accept': 'application/json',
+        'Authorization': "Bearer 4WmkWtqKGICd2PuDY6Ot",
+   }
 
  },
  getHeader: function () {
@@ -40,24 +44,17 @@ Module.register("MMM-Test", {
   * @returns {string[]} array with word, description, example, and author
   */
  getQuote: async function () {
-   const response = await fetch(this.config.apiBase, {
-    method: "GET",
-    headers: {
-        'Accept': 'application/json',
-        'Authorization': "Bearer 4WmkWtqKGICd2PuDY6Ot",
-       }
-   });
-   const json = await response.json();
-   Log.log("!!!!!!!!!!!!!! JSON RETURNED!!!!!!!!!!!: ", json);
-   const quotes = await rawQuotes.json();
-   const quoteData = quotes.docs[Math.floor(Math.random() * quotes.docs.length)];
-   //This removes  the brackets from definition and example and it limits the amount of characters to 130 for each so they fit nice.
-   const definition = json.list[0].definition
-     .replace(/[\[\]]/g, "")
-     .substr(0, 130);
-   const example = json.list[0].example.replace(/[\[\]]/g, "").substr(0, 130);
-   const author = json.list[0].author;
-   return [word, definition, example, author];
+    try {
+        const response = await fetch(this.config.apiBase, {
+            method: "GET",
+            headers: this.config.headers
+           });
+           const quotes = await response.json();
+           Log.log("!!!!!!!!!!!!!! JSON RETURNED!!!!!!!!!!!: ", json);
+           const quoteData = quotes.docs[Math.floor(Math.random() * quotes.docs.length)];
+           console.log("QUOTE DATA: ",quoteData)
+           return quoteData;
+    }
  },
 
  // Override dom generator.
