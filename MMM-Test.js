@@ -21,6 +21,7 @@ Module.register("MMM-Test", {
     },
     getDom: function() {
         var element = document.createElement("div")
+        this.getTopPosts();
         element.innerHTML = topPosts;
         return element
       },
