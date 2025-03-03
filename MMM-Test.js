@@ -16,7 +16,7 @@ Module.register("MMM-Test", {
             // data.children.forEach((post) => {
             //     topPosts += post.data.title + "<br/>";
            
-        })
+        //})
     },
     getDom: function() {
         var element = document.createElement("div")
