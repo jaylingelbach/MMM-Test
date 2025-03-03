@@ -54,6 +54,8 @@ Module.register("MMM-Test", {
            const quoteData = quotes.docs[Math.floor(Math.random() * quotes.docs.length)];
            console.log("QUOTE DATA: ",quoteData)
            return quoteData;
+    } catch(error) {
+        console.error(error);
     }
  },
 
