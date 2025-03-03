@@ -80,7 +80,7 @@ Module.register("MMM-Test", {
         : "urban bright pre-line";
       this.getData().then((response) => {
         wrapper.innerHTML =
-        "<div> Quote: " +
+        "<div class='quote'>" +
           "<blockquote>" +  
           this.config.quote +
         "</div>" +
