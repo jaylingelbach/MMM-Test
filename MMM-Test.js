@@ -68,7 +68,7 @@ Module.register("MMM-Test", {
      ? this.config.classes
      : "urban bright pre-line";
    //wrapper.innerHTML = this.config.word;
-   this.getWord().then((response) => {
+   this.getQuote().then((response) => {
      wrapper.innerHTML =
        "<div class='word'>" +
        response[0] +
