@@ -12,8 +12,7 @@ Module.register("MMM-Test", {
    //retry delay
    retryDelay: 2500,
    //api url
-   //apiBase: "https://api.urbandictionary.com/v0/random"
-   apiBase: "https://reddit.com/r/programming/top.json?t=week&limit=3"
+   apiBase: "https://api.urbandictionary.com/v0/random"
 
  },
  getHeader: function () {
@@ -45,6 +44,7 @@ Module.register("MMM-Test", {
  getWord: async function () {
    const response = await fetch(this.config.apiBase);
    const json = await response.json();
+   Log.log("JSON RETURNED: ", json);
    const word = json.list[0].word;
    //This removes  the brackets from definition and example and it limits the amount of characters to 130 for each so they fit nice.
    const definition = json.list[0].definition
@@ -82,7 +82,7 @@ Module.register("MMM-Test", {
        "Author: " +
        response[3];
    });
-   //wrapper.innerHTML = this.config.word;
+   
    return wrapper;
  }
 });
