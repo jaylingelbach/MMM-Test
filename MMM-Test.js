@@ -17,7 +17,9 @@ Module.register("MMM-Test", {
    headers: {
         'Accept': 'application/json',
         'Authorization': "Bearer 4WmkWtqKGICd2PuDY6Ot",
-   }
+   },
+   quote:"",
+   character:""
 
  },
  getHeader: function () {
@@ -53,13 +55,14 @@ Module.register("MMM-Test", {
            Log.log("!!!!!!!!!!!!!! JSON RETURNED!!!!!!!!!!!: ", quotes);
            const quoteData = quotes.docs[Math.floor(Math.random() * quotes.docs.length)];
            console.log("QUOTE DATA: ",quoteData)
-
+           this.quote = quoteData;
            const rawCharacters = await fetch(`https://the-one-api.dev/v2/character?_id=${quoteData.character}`, {
             headers: this.config.headers,
           });
           
             const characters = await rawCharacters.json();
             const characterData = characters.docs[0];
+            this.character = characterData.name;
             console.log("CHAR DATA!!!!!!!!!!: ", characterData);
 
            return quoteData;
@@ -78,11 +81,11 @@ Module.register("MMM-Test", {
    this.getData().then((response) => {
      wrapper.innerHTML =
        "<div class='word'>" +
-       this.quoteData.dialog +
+       this.config.quote.dialog +
        "</div>" +
        "<div class='description'>" +
        "<strong>Description: </strong>" +
-       this.characterData +
+       this.config.character +
        "</div>" +
        "<br>" +
        "<div class='example'>" +
