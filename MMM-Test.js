@@ -54,7 +54,7 @@ Module.register("MMM-Test", {
             const quotes = await response.json();
             const quoteData = quotes.docs[Math.floor(Math.random() * quotes.docs.length)];
     
-            console.log("QUOTE DATA: ", quoteData);
+            this.sendSocketNotification("GET_NEW_QUOTE", {});
     
             // Store quote separately
             this.quoteData = quoteData.dialog;
@@ -117,3 +117,8 @@ Module.register("MMM-Test", {
    });
    
    
+   socketNotificationReceived: function (notification, payload) {
+        if (notification === "NEW_QUOTE") {
+            console.log("New quote received from node_helper:", payload.quote);
+        }
+    }
