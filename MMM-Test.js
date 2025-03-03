@@ -82,18 +82,16 @@ Module.register("MMM-Test", {
         wrapper.innerHTML =
         "<div class='quote'>" +
           "<blockquote>" +  
-          this.config.quote +
-        "</div>" +
-          "<div> " +
-            "<cite> " +
+            this.config.quote +
+          "<cite> -" +
             this.config.character +
-            "</cite>" +
-          "</div>" +
-            "<div class='race'>" +
-              "<strong>Race: </strong>" +
-                "<em>" +
-                  this.config.race +
-                "</em>" +
+          "</cite>" +
+        "</div>" +
+        "<div class='race'>" +
+            "<strong>Race: </strong>" +
+            "<em>" +
+                this.config.race +
+            "</em>" +
           "</div>" +
           "Realm: " +
           this.config.realm
