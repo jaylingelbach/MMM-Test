@@ -89,15 +89,13 @@ Module.register("MMM-Test", {
               "</cite>" +
           "</div>" +
           "<div class='race'>" +
-            "<strong>Race: </strong>" +
-              "<em>" +
-              this.config.race +
-            "</em>" +
-          "</div>"
-          "<div>" +
-            "Realm: " +
-              this.config.realm
-          "</div>"
+          "<strong>Race: </strong>" +
+          "<em>" +
+          this.config.race +
+          "</em>" +
+          "</div>" +
+          "Realm: " +
+          this.config.realm
       });
    
       return wrapper;
