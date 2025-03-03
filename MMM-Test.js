@@ -55,7 +55,7 @@ Module.register("MMM-Test", {
            console.log("QUOTE DATA: ",quoteData)
 
            const rawCharacters = await fetch(`https://the-one-api.dev/v2/character?_id=${quoteData.character}`, {
-            headers: headers,
+            headers: this.config.headers,
           });
           
             const characters = await rawCharacters.json();
@@ -78,11 +78,11 @@ Module.register("MMM-Test", {
    this.getData().then((response) => {
      wrapper.innerHTML =
        "<div class='word'>" +
-       quoteData.dialog +
+       this.quoteData.dialog +
        "</div>" +
        "<div class='description'>" +
        "<strong>Description: </strong>" +
-       characterData +
+       this.characterData +
        "</div>" +
        "<br>" +
        "<div class='example'>" +
