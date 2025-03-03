@@ -8,11 +8,13 @@ Module.register("MMM-Test", {
 
     getTopPosts: async function() {
        const response =  await fetch(this.config.apiBase, {
-        mode: "no-cors",
-        method: "GET"
+        method: "GET",
+        headers: {
+            "Content-Type": "application-json"
+        }
        });
-       const res = await response.json()
-        Log.Log(res);
+       const res = await response.json();
+        Log.Log("!!!!!!!!! RES:  ", res);
             // data.children.forEach((post) => {
             //     topPosts += post.data.title + "<br/>";
            
