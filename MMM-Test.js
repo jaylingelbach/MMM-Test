@@ -4,7 +4,7 @@ Module.register("MMM-Test", {
  // Module config defaults.
  defaults: {
    //update every 3 minutes
-   updateInterval: 180000,
+   updateInterval: 10000,
    //fade speed
    fadeSpeed: 4000,
    //initial load delay
@@ -32,14 +32,18 @@ Module.register("MMM-Test", {
    ];
  },
 
- // Define start sequence.
- start: function () {
-   Log.info("Starting module: " + this.name);
+  // Start module
+  start: function () {
+    Log.info("Starting module: " + this.name);
+    
+    // Fetch data on start
+    this.getData();
 
-   setInterval(() => {
-     this.updateDom(this.config.fadeSpeed);
-   }, this.config.updateInterval);
- },
+    // Refresh data at set intervals
+    setInterval(() => {
+      this.getData();
+    }, this.config.updateInterval);
+  },
 
  /**
   * Retrieve the word of the day along with description, example, and author.
@@ -80,7 +84,6 @@ Module.register("MMM-Test", {
    wrapper.className = this.config.classes
      ? this.config.classes
      : "urban bright pre-line";
-   //wrapper.innerHTML = this.config.word;
    this.getData().then((response) => {
      wrapper.innerHTML =
        "<div class='quote'> Quote: " +
