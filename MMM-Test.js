@@ -14,11 +14,6 @@ Module.register("MMM-Test", {
    //api url
    //apiBase: "https://api.urbandictionary.com/v0/random"
    apiBase: "https://the-one-api.dev/v2/quote",
-   apiKey: "4WmkWtqKGICd2PuDY6Ot",
-   headers: {
-    'Accept': 'application/json',
-    'Authorization': this.apiKey,
-   }
 
  },
  getHeader: function () {
@@ -47,7 +42,10 @@ Module.register("MMM-Test", {
  getQuote: async function () {
    const response = await fetch(this.config.apiBase, {
     method: "GET",
-    headers: this.config.headers
+    headers: {
+        'Accept': 'application/json',
+        'Authorization': "4WmkWtqKGICd2PuDY6Ot",
+       }
    });
    const json = await response.json();
    Log.log("!!!!!!!!!!!!!! JSON RETURNED!!!!!!!!!!!: ", json);
