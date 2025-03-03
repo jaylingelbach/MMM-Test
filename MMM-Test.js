@@ -60,7 +60,7 @@ Module.register("MMM-Test", {
           
             const characters = await rawCharacters.json();
             const characterData = characters.docs[0];
-
+            console.log("CHAR DATA!!!!!!!!!!: ", characterData);
 
            return quoteData;
     } catch(error) {
@@ -78,11 +78,11 @@ Module.register("MMM-Test", {
    this.getData().then((response) => {
      wrapper.innerHTML =
        "<div class='word'>" +
-       response[0] +
+       quoteData.dialog +
        "</div>" +
        "<div class='description'>" +
        "<strong>Description: </strong>" +
-       response[1] +
+       characterData +
        "</div>" +
        "<br>" +
        "<div class='example'>" +
