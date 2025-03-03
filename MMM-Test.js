@@ -1,16 +1,23 @@
 let topPosts = "";
 
-fetch("https:reddit.com/r/programming/top.json?t=week&limit=3")
-.then((response) => response.json())
-.then((data) => {
-    console.log("DATA: ",data);
-    data.children.forEach((post) => {
-        topPosts += post.data.title + "<br/>";
-    });
-})
 Module.register("MMM-Test", {
     defaults: {
-        text: "Jay"
+        text: "Jay",
+        apiBase: "https:reddit.com/r/programming/top.json?t=week&limit=3"
+    },
+
+    getTopPosts: async function() {
+       const response =  fetch(this.config.apiBase, {
+        mode: "no-cors",
+        method: "GET"
+       });
+       return response.json()
+        .then((data) => {
+            console.log("DATA: ",data);
+            data.children.forEach((post) => {
+                topPosts += post.data.title + "<br/>";
+            });
+        })
     },
     getDom: function() {
         var element = document.createElement("div")
