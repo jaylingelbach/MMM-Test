@@ -53,9 +53,18 @@ Module.register("MMM-Test", {
            Log.log("!!!!!!!!!!!!!! JSON RETURNED!!!!!!!!!!!: ", quotes);
            const quoteData = quotes.docs[Math.floor(Math.random() * quotes.docs.length)];
            console.log("QUOTE DATA: ",quoteData)
+
+           const rawCharacters = await fetch(`https://the-one-api.dev/v2/character?_id=${quoteData.character}`, {
+            headers: headers,
+          });
+          
+            const characters = await rawCharacters.json();
+            const characterData = characters.docs[0];
+
+
            return quoteData;
     } catch(error) {
-        console.error("ERROR in getData: ", error);
+        console.error("Error fetching data: ", error);
     }
  },
 
