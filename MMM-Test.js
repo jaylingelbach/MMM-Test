@@ -4,7 +4,7 @@ fetch("https:reddit.com/r/programming/top.json?t=week&limit=3")
 .then(response => response.json)
 .then((data) => {
     data.data.children.forEach((post) => {
-        topPosts += post.data.title + <br/>;
+        topPosts += post.data.title + "<br/>";
     }
 )},
 Module.register("MMM-Test", {
