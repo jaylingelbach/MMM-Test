@@ -7,8 +7,10 @@ Module.register("MMM-Test", {
     },
 
     getTopPosts: async function() {
-        const proxy = "https://cors-anywhere.herokuapp.com/";
-        const response = await fetch(proxy + this.config.apiBase);
+        fetch(this.config.apiBase)
+            .then((res) => res.json())
+            .then(console.log)
+            .catch(console.error);
     //    const response =  await fetch(this.config.apiBase, {
     //     method: "GET",
     //     mode:"cors",
@@ -16,8 +18,8 @@ Module.register("MMM-Test", {
     //         "Content-Type": "application-json"
     //     }
     //    });
-       const res = await response.json();
-        Log.Log("!!!!!!!!! RES:  ", res);
+    //    const res = await response.json();
+    //     Log.Log("!!!!!!!!! RES:  ", res);
             // data.children.forEach((post) => {
             //     topPosts += post.data.title + "<br/>";
            
