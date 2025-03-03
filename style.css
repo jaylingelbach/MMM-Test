@@ -1,4 +1,7 @@
 .quote {
   max-width: 440px;
-  margin-left: 10px;
+  padding: 4px;
+  overflow: hidden;
+  max-height: 10rem;
+  text-overflow: ellipsis;
 }
