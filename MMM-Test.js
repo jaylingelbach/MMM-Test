@@ -12,7 +12,9 @@ Module.register("MMM-Test", {
    //retry delay
    retryDelay: 2500,
    //api url
-   apiBase: "https://api.urbandictionary.com/v0/random"
+   //apiBase: "https://api.urbandictionary.com/v0/random"
+   apiBase: "https://reddit.com/r/programming/top.json?t=week&limit=3"
+
  },
  getHeader: function () {
    return "urbandictionary.com Random Word";
