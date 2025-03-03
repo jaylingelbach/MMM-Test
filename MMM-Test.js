@@ -45,56 +45,75 @@ Module.register("MMM-Test", {
      * @returns {string[]} array with word, description, example, and author
      */
     getData: async function () {
-       try {
-           const response = await fetch(this.config.apiBase, {
-               method: "GET",
-               headers: this.config.headers
-              });
-              const quotes = await response.json();
-              const quoteData = quotes.docs[Math.floor(Math.random() * quotes.docs.length)];
-              console.log("QUOTE DATA: ",quoteData)
-              this.config.quote = quoteData.dialog;
-              const rawCharacters = await fetch(`https://the-one-api.dev/v2/character?_id=${quoteData.character}`, {
-               headers: this.config.headers,
-             });
-               const characters = await rawCharacters.json();
-               const characterData = characters.docs[0];
-               this.config.character = characterData.name;
-               this.config.race = characterData.race || "No data given...";
-               this.config.realm = characterData.realm || (this.config.race === "Hobbit" ? "The Shire" : "No data given...");
-   
-              return quoteData;
-       } catch(error) {
-           console.error("Error fetching data: ", error);
-       }
+        try {
+            const response = await fetch(this.config.apiBase, {
+                method: "GET",
+                headers: this.config.headers
+            });
+    
+            const quotes = await response.json();
+            const quoteData = quotes.docs[Math.floor(Math.random() * quotes.docs.length)];
+    
+            console.log("QUOTE DATA: ", quoteData);
+    
+            // Store quote separately
+            this.quoteData = quoteData.dialog;
+    
+            const rawCharacters = await fetch(`https://the-one-api.dev/v2/character?_id=${quoteData.character}`, {
+                headers: this.config.headers,
+            });
+    
+            const characters = await rawCharacters.json();
+            const characterData = characters.docs[0];
+    
+            // Store character details separately
+            this.characterData = characterData.name;
+            this.raceData = characterData.race || "No data given...";
+            this.realmData = characterData.realm || (this.raceData === "Hobbit" ? "The Shire" : "No data given...");
+    
+            return quoteData;
+        } catch (error) {
+            console.error("Error fetching data: ", error);
+        }
     },
+    
    
     // Override dom generator.
     getDom: function () {
-      const wrapper = document.createElement("div");
-      wrapper.className = this.config.classes;
-      this.getData().then((response) => {
-        wrapper.innerHTML =
-        "<div class='quote'>" +
-          "<blockquote>" +  
-            this.config.quote +
-            "<div>" +
-            "<cite> -" +
-                this.config.character +
-            "</cite>" +
-          "</div>" + 
-        "<div class='race'>" +
-            "<strong>Race: </strong>" +
-            "<em>" +
-                this.config.race +
-            "</em>" +
-          "</div>" +
-          "Realm: " +
-          this.config.realm +
-        "</div>"
-      });
-      return wrapper;
-    }
+        const wrapper = document.createElement("div");
+        wrapper.className = this.config.classes;
+    
+        this.getData().then(() => {
+            if (!this.quoteData) {
+                wrapper.innerHTML = "<div class='error'>Failed to load quote.</div>";
+                return;
+            }
+    
+            wrapper.innerHTML =
+                "<div class='quote'>" +
+                    "<blockquote>" +  
+                        this.quoteData + // Use instance variable
+                        "<div>" +
+                        "<cite> -" +
+                            this.characterData + // Use instance variable
+                        "</cite>" +
+                    "</div>" + 
+                "<div class='race'>" +
+                    "<strong>Race: </strong>" +
+                    "<em>" +
+                        this.raceData + // Use instance variable
+                    "</em>" +
+                "</div>" +
+                "Realm: " +
+                this.realmData + // Use instance variable
+            "</div>";
+        }).catch(error => {
+            console.error("Error rendering quote: ", error);
+            wrapper.innerHTML = "<div class='error'>Error loading quote.</div>";
+        });
+    
+        return wrapper;
+    }    
    });
    
    
