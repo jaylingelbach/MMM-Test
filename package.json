@@ -1,5 +1,10 @@
 {
-  "type": "commonjs",
+  "name": "MMM-Test",
+  "version": "0.5",
+  "description": "LOTR Quotes",
+  "main": "MMM-Test.js",
+  "author": "Jay Lingelbach",
+  "license": "MIT",
   "dependencies": {
     "dotenv": "^16.4.7"
   }
