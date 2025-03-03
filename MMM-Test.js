@@ -93,9 +93,9 @@ Module.register("MMM-Test", {
               "<em>" +
               this.config.race +
             "</em>" +
-          "</div>" +
-          "Realm: " +
-          this.config.realm
+            "Realm: " +
+            this.config.realm
+          "</div>"
       });
    
       return wrapper;
