@@ -13,11 +13,16 @@ Module.register("MMM-Test", {
    retryDelay: 2500,
    //api url
    //apiBase: "https://api.urbandictionary.com/v0/random"
-   apiBase: "http://swapi.dev/api/planets/1/"
+   apiBase: "https://the-one-api.dev/v2/quote",
+   apiKey: "4WmkWtqKGICd2PuDY6Ot",
+   headers: {
+    'Accept': 'application/json',
+    'Authorization': apiKey,
+   }
 
  },
  getHeader: function () {
-   return "urbandictionary.com Random Word";
+   return "LOTR QUOTES"
  },
  getStyles: function () {
    return [
@@ -29,9 +34,6 @@ Module.register("MMM-Test", {
  start: function () {
    Log.info("Starting module: " + this.name);
 
-   this.lastComplimentIndex = -1;
-   this.word = "";
-   // Schedule update timer.
    setInterval(() => {
      this.updateDom(this.config.fadeSpeed);
    }, this.config.updateInterval);
@@ -42,11 +44,14 @@ Module.register("MMM-Test", {
   *
   * @returns {string[]} array with word, description, example, and author
   */
- getWord: async function () {
-   const response = await fetch(this.config.apiBase);
+ getQuote: async function () {
+   const response = await fetch(this.config.apiBase, {
+    method: "GET",
+    headers: this.config.headers
+   });
    const json = await response.json();
-   Log.log("JSON RETURNED: ", json);
-   const word = json.list[0].word;
+   Log.log("!!!!!!!!!!!!!! JSON RETURNED!!!!!!!!!!!: ", json);
+   const quote = json.list[0].word;
    //This removes  the brackets from definition and example and it limits the amount of characters to 130 for each so they fit nice.
    const definition = json.list[0].definition
      .replace(/[\[\]]/g, "")
