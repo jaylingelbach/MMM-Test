@@ -55,14 +55,14 @@ Module.register("MMM-Test", {
            Log.log("!!!!!!!!!!!!!! JSON RETURNED!!!!!!!!!!!: ", quotes);
            const quoteData = quotes.docs[Math.floor(Math.random() * quotes.docs.length)];
            console.log("QUOTE DATA: ",quoteData)
-           this.quote = quoteData;
+           this.config.quote = quoteData.dialog;
            const rawCharacters = await fetch(`https://the-one-api.dev/v2/character?_id=${quoteData.character}`, {
             headers: this.config.headers,
           });
           
             const characters = await rawCharacters.json();
             const characterData = characters.docs[0];
-            this.character = characterData.name;
+            this.config.character = characterData.name;
             console.log("CHAR DATA!!!!!!!!!!: ", characterData);
 
            return quoteData;
@@ -81,7 +81,7 @@ Module.register("MMM-Test", {
    this.getData().then((response) => {
      wrapper.innerHTML =
        "<div class='word'>" +
-       this.config.quote.dialog +
+       this.config.quote +
        "</div>" +
        "<div class='description'>" +
        "<strong>Description: </strong>" +
