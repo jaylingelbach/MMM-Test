@@ -10,7 +10,7 @@ Module.register("MMM-Test", {
       //retry delay
       retryDelay: 2500,
       //api url
-      apiBase: "https://the-one-api.dev/v2/quote?limit=10",
+      apiBase: "https://the-one-api.dev/v2/quote",
       headers: {
            'Accept': 'application/json',
            'Authorization': `Bearer 4WmkWtqKGICd2PuDY6Ot`,
