@@ -25,7 +25,7 @@ Module.register("MMM-Test", {
 
  },
  getHeader: function () {
-   return "LOTR QUOTES"
+   return "Lord of the Ring quotes"
  },
  getStyles: function () {
    return [
@@ -66,8 +66,8 @@ Module.register("MMM-Test", {
             const characterData = characters.docs[0];
             console.log("CHAR DATA!!!!!!!!!!: ", characterData);
             this.config.character = characterData.name;
-            this.config.race = characterData.race || "";
-            this.config.realm = characterData.realm || "";
+            this.config.race = characterData.race || "No data given...";
+            this.config.realm = characterData.realm || "No data given...";
 
            return quoteData;
     } catch(error) {
